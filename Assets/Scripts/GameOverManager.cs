@@ -9,6 +9,8 @@ public class GameOverManager : MonoBehaviour
     public GameObject gameOverPanel;
     public Button restartButton;
     public Button exitButton;
+    public LeaderboardManager leaderboardManager;
+    public UIRaceTimer raceTimer;
 
     void OnEnable()
     {
@@ -31,8 +33,11 @@ public class GameOverManager : MonoBehaviour
     void ShowGameOver()
     {
         gameOverPanel.SetActive(true);
-    }
 
+        float finalTime = raceTimer.GetRawTime() + raceTimer.GetPenaltyTime();
+        leaderboardManager.AddNewTime(finalTime);
+        leaderboardManager.ShowLeaderboard();
+    }
     void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

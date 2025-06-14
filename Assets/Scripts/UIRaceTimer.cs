@@ -74,5 +74,16 @@ public class UIRaceTimer : MonoBehaviour
         float seconds = time % 60;
         return string.Format("{0:00}:{1:00.00}", minutes, seconds);
     }
+
+    public float GetRawTime()
+    {
+        return Time.time - raceStartTime;
+    }
+
+    public float GetPenaltyTime()
+    {
+        return penaltyTime;
+    }
+
 }
 
